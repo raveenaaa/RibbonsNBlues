@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>onFineChange option</title>
+</head>
+<body>
+
+
+<script src="jscolor.js"></script>
+
+<p>onFineChange gets executed more often, even on the finest change
+    as we move mouse over the picker controls.
+
+<p>Rectangle color:
+<input class="jscolor {onFineChange:'update(this)'}" value="cc66ff">
+
+<p id="rect" style="border:1px solid gray; width:161px; height:100px;">
+
+<script>
+function update(jscolor) {
+    // 'jscolor' instance can be used as a string
+    document.getElementById('rect').style.backgroundColor = '#' + jscolor
+}
+</script>
+
+
+<p style="margin-top:3em;">Check out <a href="http://jscolor.com/examples/">more examples at jscolor.com</a>!</p>
+
+
+</body>
+</html>

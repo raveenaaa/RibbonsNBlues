@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title style="font-family:'Dancing Script';color:#11003c; align :center">Sign Up</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!--Font-->
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+
+<link rel="icon" type="image/png" href="test3.png">
+
+
+<style>
+    
+   body {
+     background-image: url("Pictures/Sunset.jpg");
+}
+fieldset {
+    border: thin solid #ccc; 
+    border-radius: 4px;
+    padding: 20px;
+    padding-left: 40px;
+    background: #fbfbfb;
+    margin:0 auto;
+}
+legend {
+   color: #678;
+}
+
+.form-control {
+    width: 95%;
+}
+
+label small {
+    color: #678 !important;
+}
+span.req {
+    color:red;
+    font-size: 112%;
+  }
+
+.row{
+    /* H E R E*/
+    margin-left:250px ;
+    margin-top: 200px;
+}
+
+.container{
+    opacity: 0.7;
+  }
+
+  .button{
+    margin-left: 130px;
+  }
+
+  .purple{
+    color: #554383;
+  }
+  </style>
+
+</head>
+<body>
+
+<!---------------------------------N A V B A R---------------------------------->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+
+    <!--LOGO-->
+       <div class="navbar-header">
+			<a href="#" class="navbar-brand">
+				<div>
+					<img alt="RibbonsNBlues" src="test2.png" class="img img-circle" style="max-width:45px;margin-top:-6px;">
+				</div>
+				<div class="purple" style="font-family:'Dancing Script',Cursive;margin-top:-25px;margin-left:50px;font-size:25px;">Ribbons N Blues</div>
+			</a>
+	</div>
+    <!-- Menu Items-->
+     <div style="font-size:17px;">
+       	<ul class="nav navbar-nav">
+       	<li><a href="Home.html"><span class="glyphicon glyphicon-home"></span>  HOME</a></li>
+     	
+      <li><a href="Customization.php"><span class="glyphicon glyphicon-picture"></span>  Create Cards</a></li>
+     	
+      <li><a href="#" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-user"></span>  Log In</a></li>
+    	
+      <li class="active"><a href="SignUp.html"><span class="glyphicon glyphicon-check"></span>  Sign Up</a></li>
+     	</ul>
+     </div>
+
+     	<!--<ul class="nav navbar-nav navbar-right">-->
+     	<!--<li><a href="#"><div style="margin-right:18px;font-size:17px"><span class="glyphicon glyphicon-log-out"></span>  Log Out</div></a></li>-->
+     	<!--</ul>-->
+</div>
+</nav>
+<!----------------------------------N A V B A R  E N D------------------------------------>
+ <!-------------------------------------L O G I N -------------------------------------------->
+
+        <div class="modal fade login" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Login -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button> <!--- close button -->
+                    <h3 class="modal-title">Log In</h3>
+                </div>
+
+                <!-- body -->
+                <div class="modal-body">
+                    <form role="form" method="POST" id="fl" action="login.php">
+                        <div class="form-group">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Email" required />
+                            <span id="result"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                        </div>
+                        <!-- button -->
+                    <div class="modal-footer">
+                    <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <script>
+                  $(document).ready(function(){    
+ $("#email").keyup(function(){  
+  var name = $(this).val(); 
+  
+  if(name.length > 3){  
+   $("#result").html('checking...'); // changing span to Checking...
+  $.ajax({
+    
+    type : 'POST',
+    url  : 'test.php',
+    data : $(this).serialize(),
+    success : function(data)
+        {
+              $("#result").html(data);
+           }
+    });
+    return false;
+}
+  else{
+   $("#result").html('');
+  }
+ });
+ 
+});
+ </script>
+<!------------------------------L O G I N  E N D S-------------------------------->
+<!----------------------------S I G N  U P--------------------------------->
+<div class="container">
+  <div class="row">
+        <div class="col-md-6">
+            <form action="SignUp.php" method="post" id="fileForm" role="form">
+            <fieldset><span class="req"><small> required *</small></span></legend>
+
+           <div class="form-group">   
+                <label for="firstname"><span class="req">* </span> First name: </label>
+                    <input class="form-control" type="text" name="firstname" id = "firstname" onkeyup = "Validate(this)" required /> 
+                        <div id="errFirst"></div>    
+            </div>
+
+            <div class="form-group">
+                <label for="lastname"><span class="req">* </span> Last name: </label> 
+                    <input class="form-control" type="text" name="lastname" id = "lastname" onkeyup = "Validate(this)" placeholder="Only alphabets,hyphen and single quote allowed" required />
+                        <div id="errLast"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><span class="req">* </span> Email Address: </label> 
+                    <input class="form-control" required type="text" name="email" id = "email"  onchange="email_validate(this.value);" required />   
+                        <div class="status" id="status"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="username"><span class="req">* </span> User name:  <small>This will be your login user name</small> </label> 
+                    <input class="form-control" type="text" name="username" id = "username" onkeyup = "Validate(this)" placeholder="minimum 6 letters" required />  
+                        <div id="errLast"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="pass1"><span class="req">* </span> Password: </label>
+                    <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16"  id="pass1" /> </p>
+
+                <label for="pass2"><span class="req">* </span> Password Confirm: </label>
+                    <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="Enter again to validate"  id="pass2" onkeyup="checkPass(); return false;" />
+                        <span id="confirmMessage" class="confirmMessage"></span>
+            </div>
+      
+
+            <div class="button">
+                <input class="btn btn-success" type="submit" name="submit_reg" value="Register">
+            </div>
+                      
+
+            </fieldset>
+            </form><!-- ends register form -->
+        </div><!-- ends col-6 -->
+   
+  </div>
+</div>
+<!-------------------------------S I G N  U P  E N D S--------------------------------------->
+<!-------------------------------V A L I D A T I O N------------------------------------->
+<script>
+  
+  function checkPass()
+{
+    //Store the password field objects into variables ...
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
+    //Store the Confimation Message Object ...
+    var message = document.getElementById('confirmMessage');
+    //Set the colors we will be using ...
+    var goodColor = "#94DB94";
+    var badColor = "#ff4d4d";
+    //Compare the values in the password field 
+    //and the confirmation field
+    if(pass1.value == pass2.value){
+        //The passwords match. 
+        //Set the color to the good color and inform
+        //the user that they have entered the correct password 
+        pass2.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = "Passwords Match"
+    }else{
+        //The passwords do not match.
+        //Set the color to the bad color and
+        //notify the user.
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords Do Not Match!"
+    }
+} 
+
+// validates text only
+function Validate(txt) {
+    txt.value = txt.value.replace(/[^a-zA-Z'\n\r.-]+/g, '');
+}
+// validate email
+function email_validate(email)
+{
+var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
+
+    if(regMail.test(email) == false) // HEREEEEEEEEEEEE
+    {
+    document.getElementById("status").innerHTML    = "<span class='warning'>Email address is not valid yet.</span>";
+    }
+    else
+    {
+    document.getElementById("status").innerHTML = "<span class='valid'>Thanks, you have entered a valid Email address!</span>"; 
+    }
+}
+</script>
+<!----------------------------------V A L I D A T I O N------------------------------------------->
+</body>
+</html>
+

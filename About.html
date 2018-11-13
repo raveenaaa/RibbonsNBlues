@@ -1,0 +1,162 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="sidebar.css">
+    <script type="text/javascript" src="sidebar.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--Font-->
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icon -->
+    <link rel="icon" type="image/png" href="test3.png">
+
+
+    <title style="font-family:'Dancing Script';">Ribbons N Blues</title>
+
+    <style>
+        .about{
+            width:650px;
+            height: 650px;
+            margin: 50px auto;
+            box-shadow:5px 5px 5px 5px #bbbbbb;
+            background-color: white!important;
+            font-family: "Comic Sans MS";
+            font-size: 25px;
+            font-color: #333333;
+        }
+
+    </style>
+
+</head>
+<body style="background-color: #fafafa">
+
+<!--Navbar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+        <!--LOGO-->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <div>
+                    <img alt="RibbonsNBlues" src="test2.png" class="img img-circle" style="max-width:45px;margin-top:-6px;">
+                </div>
+                <div style="font-family:'Dancing Script',Cursive;margin-top:-25px;margin-left:50px;font-size:25px;">Ribbons N Blues</div>
+            </a>
+        </div>
+        <!-- Menu Items-->
+        <div style="font-size:17px">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="Registered.php"><span class="glyphicon glyphicon-home"></span>  HOME</a></li>
+
+                <li><a href="Customization.php"><span class="glyphicon glyphicon-picture"></span>  Create Cards</a></li>
+
+                <li><a href="#" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-user"></span>  Log In</a></li>
+
+                <li><a href="SignUp.html"><span class="glyphicon glyphicon-check"></span>  Sign Up</a></li>
+
+
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<!--Login Modal-->
+
+<div class="modal fade login" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button> <!--- close button -->
+                <h3 class="modal-title">Log In</h3>
+            </div>
+
+            <!-- body (form) -->
+            <div class="modal-body">
+                <form role="form" method="POST" id="fl"  action="login.php" autocomplete="off">
+                    <div class="form-group">
+                        <input type="text" name="email" id="email" class="form-control" placeholder="Email" required autocomplete="off" />
+                        <span id="result"></span>
+                        <!-- <div class="status" id="status"></div> -->
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password" minlength="4" maxlength="16">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <script>
+                $(document).ready(function(){
+                    $("#email").keyup(function(){
+                        var name = $(this).val();
+
+                        if(name.length > 3){
+                            $("#result").html('checking...'); // changing span to Checking...
+
+                            $.ajax({
+
+                                type : 'POST',
+                                url  : 'test.php',
+                                data : $(this).serialize(),
+                                success : function(data){
+                                    $("#result").html(data);
+                                }
+                            });
+                            return false;
+
+                        }
+                        else{
+                            $("#result").html('');
+                        }
+                    });
+
+                });
+            </script>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div id="wrapper">
+
+    <!---J U M B O T R O N-->
+    <div class="jumbotron" style="background-image: url(Pictures/Mountains.png); background-size: cover; height:400px;">
+        <div class="container text-center" style="line-height: 20px;"><br>
+            <h1>Greeting Cards for your loved ones</h1>
+            <p style="font-size:175%;">Here,you can make and choose from a variety of E-cards you like </p>
+        </div >
+
+    </div>
+    <!-- End jumbotron-->
+
+<div class="about">
+    <h2 style="padding: 50px;align:center"> Welcome to Ribbons N Blues!!!</h2>
+    <p style="padding: 30px; align:center;" >
+        We are committed to giving you the best eCard and digital greeting experience possible.<br><br>
+        Ribbons and Blues eCards is based in Mumbai, Maharashtra and focuses on digital technology.<br><br>
+        Our focus is to enhance user experience in customization and creation of ecards.<br>
+    </p>
+
+</div>
+
+</div>
+</body>
+</html>
